@@ -10,7 +10,10 @@ interface DecodedToken {
   [key: string]: unknown; // safer than `any`
 }
 
-export const verifyToken = async (req: NextRequest,allowedRoles: string[]=[]) => {
+export const verifyToken = async (
+  req: NextRequest,
+  allowedRoles: string[] = []
+) => {
   const authHeader = req.headers.get("authorization");
   if (!authHeader || !authHeader.startsWith("Bearer ")) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -20,8 +23,11 @@ export const verifyToken = async (req: NextRequest,allowedRoles: string[]=[]) =>
 
   try {
     const decoded = jwt.verify(token, SECRET) as DecodedToken;
-     if (allowedRoles.length && !allowedRoles.includes(decoded.userType)) {
-      return NextResponse.json({ error: "Forbidden: insufficient role" }, { status: 403 });
+    if (allowedRoles.length && !allowedRoles.includes(decoded.userType)) {
+      return NextResponse.json(
+        { error: "Forbidden: insufficient role" },
+        { status: 403 }
+      );
     }
     return decoded; // You can use this decoded info (e.g., userId or role)
   } catch (err) {

@@ -22,7 +22,6 @@ export const useEventRegistration = () => {
   const [loadingUpdateStatus, setLoadingUpdateStatus] = useState(false);
   const [loadingDeleteGuest, setLoadingDeleteGuest] = useState(false);
 
-
   const eventRegestration = async (values: RegesterGuest) => {
     setLoading(true);
     try {

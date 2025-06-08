@@ -42,7 +42,7 @@ export default function RegistrationList() {
       }
     };
     loadGuests();
-    
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -53,7 +53,7 @@ export default function RegistrationList() {
   };
 
   return (
-    <div className="p-2 md:p-12 min-h-screen bg-gray-100">
+    <div className="p-2 md:p-12 min-h-screen bg-gradient-to-br from-blue-50 to-purple-100">
       <h2 className="text-2xl md:text-3xl font-bold text-gray-800 text-center mb-6">
         Guest Registrations List
       </h2>
@@ -86,8 +86,8 @@ export default function RegistrationList() {
                       {user.status === "pending"
                         ? "Pending"
                         : user.status === "approved"
-                        ? "Approved"
-                        : "Cancelled"}
+                          ? "Approved"
+                          : "Cancelled"}
                     </TableCell>
                     <TableCell className="text-center">
                       {user.hasEntered ? "Yes" : "No"}
@@ -139,8 +139,8 @@ export default function RegistrationList() {
                   {user.status === "pending"
                     ? "Pending"
                     : user.status === "approved"
-                    ? "Approved"
-                    : "Cancelled"}
+                      ? "Approved"
+                      : "Cancelled"}
                 </div>
                 <div>
                   <span className="font-semibold">Has Entered:</span>{" "}

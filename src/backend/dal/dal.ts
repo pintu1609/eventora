@@ -5,7 +5,7 @@
 // }
 // export const create = async (model: any, body: any) => {
 //     console.log("🚀 ~ create ~ body:", body)
-    
+
 //   return await model.create(body);
 // };
 // // // create Many
@@ -91,8 +91,13 @@
 // //   return await model.distinct(field, query);
 // // };
 
-
-import { FilterQuery, UpdateQuery, Document, Model, ProjectionType } from "mongoose";
+import {
+  FilterQuery,
+  UpdateQuery,
+  Document,
+  Model,
+  ProjectionType,
+} from "mongoose";
 
 // For pagination
 interface Pagination {
@@ -101,7 +106,10 @@ interface Pagination {
 }
 
 // Generic Create
-export const create = async <T extends Document>(model: Model<T>, body: Partial<T>): Promise<T> => {
+export const create = async <T extends Document>(
+  model: Model<T>,
+  body: Partial<T>
+): Promise<T> => {
   return await model.create(body);
 };
 

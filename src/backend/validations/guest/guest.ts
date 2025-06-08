@@ -1,7 +1,10 @@
 import z from "zod";
 
 export const guestSchema = z.object({
-  name: z.string().min(3, "Name must be at least 3 characters").max(30, "Name must be at most 30 characters"),
+  name: z
+    .string()
+    .min(3, "Name must be at least 3 characters")
+    .max(30, "Name must be at most 30 characters"),
   email: z.string().email("Invalid email address"),
   phone: z
     .string()
@@ -14,11 +17,10 @@ export const guestSchema = z.object({
   image: z.string().nonempty("Image is required"),
 });
 
-
 export const guestStatusValidationSchema = z.object({
   id: z.string(),
   status: z.string().nonempty("Status is required"),
-})
+});
 
 export type Guest = z.infer<typeof guestSchema>;
 export type GuestStatusValidation = z.infer<typeof guestStatusValidationSchema>;

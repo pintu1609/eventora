@@ -10,20 +10,20 @@ export const useScan = () => {
   };
   const [loading, setLoading] = useState(false);
   const [loadingCheckinGuest, setLoadingCheckinGuest] = useState(false);
-  
+
   const scanQr = async (values: { qrCode: string }) => {
     setLoading(true);
     try {
-      const res = await axios.post(`${ENDPOINT.SCANQRCODE}`, values,{
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${getToken()}`,
-          },
-        });
+      const res = await axios.post(`${ENDPOINT.SCANQRCODE}`, values, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${getToken()}`,
+        },
+      });
       toast.success(res.data.message);
       return res.data;
     } catch (err: unknown) {
-            const error = err as AxiosError<{ message?: string }>;
+      const error = err as AxiosError<{ message?: string }>;
 
       toast.error(error?.response?.data?.message || "Scan QR failed");
       return false;
@@ -31,7 +31,6 @@ export const useScan = () => {
       setLoading(false);
     }
   };
-
 
   const checkinGuest = async (guestId: string) => {
     setLoadingCheckinGuest(true);
@@ -49,8 +48,8 @@ export const useScan = () => {
       toast.success(res.data.message);
       return res.data;
     } catch (err: unknown) {
-            const error = err as AxiosError<{ message?: string }>;
-      
+      const error = err as AxiosError<{ message?: string }>;
+
       toast.error(error?.response?.data?.message || "fetch guest list failed");
       return false;
     } finally {
@@ -58,12 +57,10 @@ export const useScan = () => {
     }
   };
 
- 
-
   return {
     scanQr,
     loading,
     checkinGuest,
-    loadingCheckinGuest
+    loadingCheckinGuest,
   };
 };

@@ -1,12 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import {  useState } from "react";
+import { useState } from "react";
 import { Menu, X } from "lucide-react";
 
 import { useAuthStatus } from "@/frontendHelper/auth";
 export default function Navbar() {
-    const isAuthenticated = useAuthStatus();
+  const isAuthenticated = useAuthStatus();
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -15,7 +15,7 @@ export default function Navbar() {
   return (
     <nav className="bg-blue-600 text-white px-4 py-3 shadow-md fixed w-full z-50">
       <div className="flex justify-between items-center max-w-6xl mx-auto relative">
-        
+
         {/* Left - Logo */}
         <div className="flex items-center flex-shrink-0">
           <Link href="/" className="text-xl font-bold">
@@ -26,10 +26,10 @@ export default function Navbar() {
         {/* Center - Main Links */}
         <ul className="hidden md:flex gap-6 absolute left-1/2 transform -translate-x-1/2">
           <li>
-          <Link href={isAuthenticated ? '/registrationList' : '/'}>
-            {isAuthenticated ? 'Registration List' : 'Home'}
-          </Link>
-        </li>          <li><Link href="/about">About</Link></li>
+            <Link href={isAuthenticated ? '/registrationList' : '/'}>
+              {isAuthenticated ? 'Registration List' : 'Home'}
+            </Link>
+          </li>          <li><Link href="/about">About</Link></li>
           <li><Link href="/registartion">Event Registration</Link></li>
           {isAuthenticated && <li><Link href="/scanqr">Scan QR</Link></li>}
         </ul>
@@ -40,19 +40,13 @@ export default function Navbar() {
             <Link href="/admin">Admin Login</Link>
           </div>
         )}
-        {/* {isAuthenticated && (
-          <div className="hidden md:flex items-center">
-            <Link href="/scanqr">Scan QR</Link>
-          </div>
-        )} */}
-
         {isAuthenticated && (
           <div className="hidden md:flex items-center">
-            <button onClick={() => {localStorage.removeItem("token"); window.location.href = "/";}}>Logout</button>
+            <button className="cursor-pointer " onClick={() => { localStorage.removeItem("token"); window.location.href = "/"; }}>Logout</button>
           </div>
         )}
 
-        
+
 
         {/* Mobile Menu Toggle */}
         <div className="md:hidden">
@@ -69,11 +63,11 @@ export default function Navbar() {
           <li><Link href="/about" onClick={() => setIsOpen(false)}>About</Link></li>
           <li><Link href="/registartion" onClick={() => setIsOpen(false)}>Event Registration</Link></li>
           {isAuthenticated && <li><Link href="/scanqr" onClick={() => setIsOpen(false)}>Scan QR</Link></li>}
-                  {!isAuthenticated && (
+          {!isAuthenticated && (
             <li><Link href="/admin" onClick={() => setIsOpen(false)}>Admin Login</Link></li>
           )}
           {isAuthenticated && (
-            <li><button onClick={() => {localStorage.removeItem("token"); window.location.href = "/";}}>Logout</button></li>
+            <li><button onClick={() => { localStorage.removeItem("token"); window.location.href = "/"; }}>Logout</button></li>
           )}
         </ul>
       )}

@@ -13,16 +13,16 @@ interface Guest {
 
 }
 
-export default function CheckinCard({  onClose,loading, guest  }: {  onClose: () => void; loading: boolean; guest:Guest }) {
+export default function CheckinCard({ onClose, loading, guest }: { onClose: () => void; loading: boolean; guest: Guest }) {
 
   const { checkinGuest, loadingCheckinGuest } = useScan();
 
-  const handleAction=async(guestId:string)=>{
-  const res =  await checkinGuest (guestId,);
-  if (res.status === 201)
+  const handleAction = async (guestId: string) => {
+    const res = await checkinGuest(guestId,);
+    if (res.status === 201)
 
-    onClose();
-  } 
+      onClose();
+  }
 
 
 
@@ -37,47 +37,23 @@ export default function CheckinCard({  onClose,loading, guest  }: {  onClose: ()
         ) : (
           <div>
             <h3 className="text-xl font-bold mb-4 text-center">Guest Details</h3>
-            
+
             <p><strong>Name:</strong> {guest?.name}</p>
             <p><strong>Email:</strong> {guest?.email}</p>
             <p><strong>Phone:</strong> {guest?.phone}</p>
             <p><strong>Status:</strong> {guest?.status}</p>
             <p><strong>Has Entered:</strong> {guest?.hasEntered ? "Yes" : "No"}</p>
-            {/* <div>
-              <Image
-                src={guest?.imageUrl || "/placeholder.jpg"}
-                alt={guest?.name || "Guest"}
-                width={256}
-                height={256}
-                unoptimized
-                className="w-full h-64 rounded-md mx-auto my-4 "
-                quality={100}
-
-              />
-            </div> */}
-
             <div className="flex justify-between mt-6">
-                            {!guest?.hasEntered  && (
+              {!guest?.hasEntered && (
 
-              <button
-                onClick={() => handleAction(guest?._id)}
-                disabled={loadingCheckinGuest}
-                className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
-              >
-                Checkin
-              </button>
-           )} 
-              {/* {guest?.status !== "cancel" && (
-                
-             
-              <button
-                onClick={() => handleAction("cancel")}
-                disabled={loadingUpdateStatus}
-                className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
-              >
-                Cancel
-              </button>
-               )} */}
+                <button
+                  onClick={() => handleAction(guest?._id)}
+                  disabled={loadingCheckinGuest}
+                  className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
+                >
+                  Checkin
+                </button>
+              )}
               <button
                 onClick={onClose}
                 className="bg-gray-300 px-4 py-2 rounded hover:bg-gray-400"

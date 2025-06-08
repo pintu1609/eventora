@@ -4,38 +4,40 @@ import { checkinginGuest } from "@/backend/service/scanqr/scanqr";
 import { NextRequest, NextResponse } from "next/server";
 
 export const scanQr = async (req: NextRequest) => {
-
-    try{
-        await connectToDatabase();
-        const body = await req.json();
-        console.log("🚀 ~ scanQr ~ body:", body)
+  try {
+    await connectToDatabase();
+    const body = await req.json();
     const result = await checkGuest(body.qrCode);
-    return NextResponse.json( { status: 201 , message: result.message || "Guest found successfully", data: result}); 
-    }catch (error: unknown) {
-        if (error instanceof Error) {
-            return NextResponse.json({ error: error.message }, { status: 400 });
-        } else {
-            // handle unknown error type
-        }
+    return NextResponse.json({
+      status: 201,
+      message: result.message || "Guest found successfully",
+      data: result,
+    });
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      return NextResponse.json({ error: error.message }, { status: 400 });
+    } else {
+      // handle unknown error type
     }
-  
+  }
 };
 
-
-
 export const checkinGuest = async (req: NextRequest) => {
-    await connectToDatabase();
-    try {
-        const body = await req.json();
+  await connectToDatabase();
+  try {
+    const body = await req.json();
 
-
-        const result = await checkinginGuest(body.id);
-        return NextResponse.json( { status: 201, message: "Guest checked in successfully", data: result});
-    } catch (error: unknown) {
-        if (error instanceof Error) {
-            return NextResponse.json({ error: error.message }, { status: 400 });
-        } else {
-            // handle unknown error type
-        }
+    const result = await checkinginGuest(body.id);
+    return NextResponse.json({
+      status: 201,
+      message: "Guest checked in successfully",
+      data: result,
+    });
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      return NextResponse.json({ error: error.message }, { status: 400 });
+    } else {
+      // handle unknown error type
     }
+  }
 };

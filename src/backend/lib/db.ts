@@ -1,12 +1,10 @@
 import mongoose, { Mongoose } from "mongoose";
 
-
-const MONGODB_URI = "mongodb+srv://pintukumar808284:ZyLWuB7bdBrOebml@cluster0.kqbqscz.mongodb.net/eccomerece_test";
+const MONGODB_URI = process.env.DATABASE_URL as string;
 
 if (!MONGODB_URI) {
   throw new Error("Please define MONGODB_URI in .env.local");
 }
-
 
 declare global {
   // only for Node.js

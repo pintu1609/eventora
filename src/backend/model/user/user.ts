@@ -4,7 +4,7 @@ export interface IUser extends Document {
   name: string;
   userName: string;
   password: string;
-  userType: "admin" | "user" ;
+  userType: "admin" | "user";
 }
 
 const userSchema: Schema<IUser> = new mongoose.Schema({
@@ -18,4 +18,5 @@ const userSchema: Schema<IUser> = new mongoose.Schema({
   },
 });
 
-export const User: Model<IUser> = mongoose.models.User || mongoose.model("User", userSchema);
+export const User: Model<IUser> =
+  mongoose.models.User || mongoose.model("User", userSchema);

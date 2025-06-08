@@ -78,7 +78,6 @@ export default function GuestCard({ guestId, onClose, onStatusChange, }: { guest
     loadGuests();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-
   }, [guestId]);
 
   return (

@@ -5,14 +5,14 @@ import { FaBolt, FaLock, FaUserFriends, FaMagic } from "react-icons/fa";
 
 export default function About() {
   return (
-    <section className="bg-white py-16 px-6 md:px-20 mt-[-44px]">
+    <section className="bg-gradient-to-br from-blue-50 to-purple-100 py-16 px-6 md:px-20 mt-[-44px]">
       <div className="max-w-5xl mx-auto text-center">
         <h2 className="text-4xl font-extrabold text-gray-800 mb-4">🎉 About Us</h2>
         <p className="text-lg text-gray-600 mb-10">
           Welcome to <span className="font-semibold text-blue-600">Eventora</span> – Where Every Moment Matters.
         </p>
         <p className="text-gray-700 text-base md:text-lg mb-8">
-         We&rsquo;re not just another event management platform. Eventora is your backstage pass to flawlessly planned, beautifully executed, and truly unforgettable events.
+          We&rsquo;re not just another event management platform. Eventora is your backstage pass to flawlessly planned, beautifully executed, and truly unforgettable events.
         </p>
         <p className="text-gray-700 text-base md:text-lg mb-12">
           Whether you&rsquo;re throwing a cozy birthday bash or launching a global tech conference, our mission is simple:
