@@ -58,7 +58,7 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <ul className="md:hidden mt-1 space-y-4 text-left hover:bg-blue-500 py-4">
+        <ul className="md:hidden mt-1 space-y-4 text-left  py-4">
           <li><Link href={isAuthenticated ? '/registrationList' : '/'} onClick={() => setIsOpen(false)}>{isAuthenticated ? 'Registration List' : 'Home'}</Link></li>
           <li><Link href="/about" onClick={() => setIsOpen(false)}>About</Link></li>
           <li><Link href="/registartion" onClick={() => setIsOpen(false)}>Event Registration</Link></li>
