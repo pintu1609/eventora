@@ -35,7 +35,7 @@ export default function Admin() {
     },
   });
   return (
-    <div className="flex flex-col items-center justify-center min-h-[calc(100vh-64px)] bg-gradient-to-br from-blue-50 to-purple-100 px-4">
+    <div className="flex flex-col items-center justify-center min-h-[calc(100vh-120px)] bg-gradient-to-br from-blue-50 to-purple-100 px-4">
       <div className="bg-white p-8 rounded-lg shadow-2xl w-full max-w-md">
         <h2 className="text-2xl font-bold mb-6 text-center">Admin Login</h2>
         <form className="flex flex-col gap-5" onSubmit={handleSubmit}>

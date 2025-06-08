@@ -71,7 +71,7 @@ export default function GuestRegistrationPage() {
 
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-[calc(100vh-64px)] bg-gradient-to-br from-blue-50 to-purple-100 px-4">
+    <div className="flex flex-col items-center justify-center min-h-[calc(100vh-120px)] bg-gradient-to-br from-blue-50 to-purple-100 px-4">
       {/* <h2 className="text-2xl font-bold mb-4 text-center">Guest Registration</h2> */}
       <div className="text-center mb-6">
         <h2 className="text-2xl font-bold text-gray-800">Welcome to the Event!</h2>

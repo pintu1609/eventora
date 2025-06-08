@@ -53,7 +53,7 @@ export default function RegistrationList() {
   };
 
   return (
-    <div className="p-2 md:p-12 min-h-screen bg-gradient-to-br from-blue-50 to-purple-100">
+    <div className="p-2 md:p-12 min-h-[calc(100vh-120px)] bg-gradient-to-br from-blue-50 to-purple-100">
       <h2 className="text-2xl md:text-3xl font-bold text-gray-800 text-center mb-6">
         Guest Registrations List
       </h2>

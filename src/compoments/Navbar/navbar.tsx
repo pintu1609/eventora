@@ -13,12 +13,12 @@ export default function Navbar() {
   const toggleMenu = () => setIsOpen((prev) => !prev);
 
   return (
-    <nav className="bg-blue-600 text-white px-4 py-3 shadow-md fixed w-full z-50">
+    <nav className="bg-blue-600 text-white px-4 py-2 shadow-md fixed w-full z-50 rounded-bl-md rounded-br-md md:rounded-none md:py-3">
       <div className="flex justify-between items-center max-w-6xl mx-auto relative">
 
         {/* Left - Logo */}
         <div className="flex items-center flex-shrink-0">
-          <Link href="/" className="text-xl font-bold">
+          <Link href="/" className="text-xl font-bold" onClick={() => setIsOpen(false)}>
             Eventora
           </Link>
         </div>
@@ -42,7 +42,7 @@ export default function Navbar() {
         )}
         {isAuthenticated && (
           <div className="hidden md:flex items-center">
-            <button className="cursor-pointer " onClick={() => { localStorage.removeItem("token"); window.location.href = "/"; }}>Logout</button>
+            <button className="cursor-pointer bg-purple-600 hover:bg-purple-7git 00 text-white font-semibold py-1 px-4 rounded " onClick={() => { localStorage.removeItem("token"); window.location.href = "/"; }}>Logout</button>
           </div>
         )}
 
@@ -58,7 +58,7 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <ul className="md:hidden mt-4 space-y-4 text-center bg-blue-500 py-4 rounded-md">
+        <ul className="md:hidden mt-1 space-y-4 text-left hover:bg-blue-500 py-4">
           <li><Link href={isAuthenticated ? '/registrationList' : '/'} onClick={() => setIsOpen(false)}>{isAuthenticated ? 'Registration List' : 'Home'}</Link></li>
           <li><Link href="/about" onClick={() => setIsOpen(false)}>About</Link></li>
           <li><Link href="/registartion" onClick={() => setIsOpen(false)}>Event Registration</Link></li>

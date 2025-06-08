@@ -9,7 +9,7 @@ function ConfirmationComponent() {
   const id = searchParams.get("id"); // get id from URL like ?id=abc123
 
   return (
-    <div className="min-h-[calc(100vh-64px)] flex items-center justify-center bg-gradient-to-br from-blue-50 to-purple-100 px-4">
+    <div className="min-h-[calc(100vh-120px)] flex items-center justify-center bg-gradient-to-br from-blue-50 to-purple-100 px-4">
       <div className="bg-white p-8 rounded-lg shadow-xl max-w-md w-full text-center">
         <CheckCircle className="text-green-500 w-16 h-16 mx-auto mb-4" />
         <h1 className="text-3xl font-bold text-gray-800 mb-2">Registration Successful</h1>
