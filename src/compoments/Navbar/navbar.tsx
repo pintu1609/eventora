@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import { Menu, X } from "lucide-react";
 
 import { useAuthStatus } from "@/frontendHelper/auth";
@@ -48,7 +48,7 @@ export default function Navbar() {
 
         {isAuthenticated && (
           <div className="hidden md:flex items-center">
-            <button onClick={() => {localStorage.removeItem("token"), window.location.href = "/"}}>Logout</button>
+            <button onClick={() => {localStorage.removeItem("token"); window.location.href = "/";}}>Logout</button>
           </div>
         )}
 
@@ -73,7 +73,7 @@ export default function Navbar() {
             <li><Link href="/admin" onClick={() => setIsOpen(false)}>Admin Login</Link></li>
           )}
           {isAuthenticated && (
-            <li><button onClick={() => {localStorage.removeItem("token"), window.location.href = "/"}}>Logout</button></li>
+            <li><button onClick={() => {localStorage.removeItem("token"); window.location.href = "/";}}>Logout</button></li>
           )}
         </ul>
       )}

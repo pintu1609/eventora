@@ -1,4 +1,5 @@
-import mongoose from "mongoose";
+import mongoose, { Mongoose } from "mongoose";
+
 
 const MONGODB_URI = "mongodb+srv://pintukumar808284:ZyLWuB7bdBrOebml@cluster0.kqbqscz.mongodb.net/eccomerece_test";
 
@@ -6,18 +7,47 @@ if (!MONGODB_URI) {
   throw new Error("Please define MONGODB_URI in .env.local");
 }
 
-let cached = (global as any).mongoose || { conn: null, promise: null };
+// const cached = (global as any).mongoose || { conn: null, promise: null };
 
-export async function connectToDatabase() {
-  if (cached.conn) return cached.conn;
+// export async function connectToDatabase() {
+//   if (cached.conn) return cached.conn;
 
-  if (!cached.promise) {
-    cached.promise = mongoose.connect(MONGODB_URI, {
+//   if (!cached.promise) {
+//     cached.promise = mongoose.connect(MONGODB_URI, {
+//       bufferCommands: false,
+//     });
+//   }
+
+//   cached.conn = await cached.promise;
+//   (global as any).mongoose = cached;
+//   return cached.conn;
+// }
+
+
+declare global {
+  // only for Node.js
+  // eslint-disable-next-line no-var
+  var mongoose: {
+    conn: Mongoose | null;
+    promise: Promise<Mongoose> | null;
+  };
+}
+
+// 2. Create global cache if not exist
+if (!global.mongoose) {
+  global.mongoose = { conn: null, promise: null };
+}
+
+// 3. Connect and cache
+export async function connectToDatabase(): Promise<Mongoose> {
+  if (global.mongoose.conn) return global.mongoose.conn;
+
+  if (!global.mongoose.promise) {
+    global.mongoose.promise = mongoose.connect(MONGODB_URI, {
       bufferCommands: false,
     });
   }
 
-  cached.conn = await cached.promise;
-  (global as any).mongoose = cached;
-  return cached.conn;
+  global.mongoose.conn = await global.mongoose.promise;
+  return global.mongoose.conn;
 }

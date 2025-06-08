@@ -11,6 +11,7 @@ import { BeatLoader, ClipLoader } from "react-spinners";
 
 // import QRCode from "qrcode.react";
 import QRCode from "qrcode";
+import Image from "next/image";
 
 
 
@@ -55,6 +56,7 @@ export default function GuestRegistrationPage() {
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
+    console.log("🚀 ~ handleFileChange ~ file:", file)
     if (!file) return;
 
     setPreviewUrl(URL.createObjectURL(file)); // preview
@@ -90,7 +92,7 @@ export default function GuestRegistrationPage() {
       <p className="font-medium text-gray-700 mb-2">Scan to Pay</p>
       {/* <QRCode value="upi://pay?pa=pintukumar808284@okaxis&pn=EventName&am=500" size={128} /> */}
       {qrUrl ? (
-        <img src={qrUrl} alt="QR Code" className="w-40 h-40 mx-auto" />
+        <Image src={qrUrl} alt="QR Code" className="w-40 h-40 mx-auto" width={128} height={128} />
       ) : (
         <p>Generating QR Code...</p>
       )}
@@ -144,11 +146,20 @@ export default function GuestRegistrationPage() {
               {imageLoading ? <ClipLoader color="black" size={50} /> :
               <div className="w-12 h-[48px]">
                 {/* <p className="text-sm text-gray-500 mb-2">Preview:</p> */}
-                <img
-                  src={previewUrl || "https://www.w3schools.com/howto/img_avatar.png"}
+                {previewUrl ?(
+                <Image
+                  src={previewUrl}
                   alt="Receipt Preview"
                   className="max-h-16 mx-auto rounded shadow  object-cover"
-                />
+                  width={100}
+                  height={100}
+                />):(<Image
+                  src="https://www.w3schools.com/howto/img_avatar.png"
+                  alt="Receipt Preview"
+                  className="max-h-16 mx-auto rounded shadow  object-cover"
+                  width={100}
+                  height={100}
+                />)}
               </div>
                }
               {/* )} */}

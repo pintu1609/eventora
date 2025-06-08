@@ -6,7 +6,7 @@ type Email = {
     to: string;
     subject: string;
     desc: string;
-    attachment?: any
+    attachment?: Buffer;
 };
 
 export async function sendEmail({ to,subject, desc,attachment }: Email) {
@@ -24,7 +24,7 @@ export async function sendEmail({ to,subject, desc,attachment }: Email) {
         attachments: [
     {
       filename: "qrcode.png",
-      content: attachment.toString("base64"),
+      content: attachment?.toString("base64"),
       type: "image/png",
       disposition: "attachment", // Use "inline" to try to embed
     }

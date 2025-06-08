@@ -1,8 +1,15 @@
 "use client";
 import { useState } from "react";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { toast } from "react-hot-toast";
 import ENDPOINT from "../endPoint";
+
+interface RegesterGuest {
+  name: string;
+  email: string;
+  phone: string;
+  image: string;
+}
 
 export const useEventRegistration = () => {
   const getToken = () => {
@@ -15,14 +22,16 @@ export const useEventRegistration = () => {
   const [loadingUpdateStatus, setLoadingUpdateStatus] = useState(false);
   const [loadingDeleteGuest, setLoadingDeleteGuest] = useState(false);
 
-  const eventRegestration = async (values: any) => {
+
+  const eventRegestration = async (values: RegesterGuest) => {
     setLoading(true);
     try {
       const res = await axios.post(`${ENDPOINT.EVENTREGISTRATION}`, values);
       toast.success(res.data.message);
       return res.data;
-    } catch (err: any) {
-      toast.error(err?.response?.data?.message || "Registration failed");
+    } catch (err: unknown) {
+      const error = err as AxiosError<{ message?: string }>;
+      toast.error(error?.response?.data?.message || "Registration failed");
       return false;
     } finally {
       setLoading(false);
@@ -40,8 +49,10 @@ export const useEventRegistration = () => {
       });
       toast.success(res.data.message);
       return res.data;
-    } catch (err: any) {
-      toast.error(err?.response?.data?.message || "fetch guest list failed");
+    } catch (err: unknown) {
+      const error = err as AxiosError<{ message?: string }>;
+
+      toast.error(error?.response?.data?.message || "fetch guest list failed");
       return false;
     } finally {
       setLoadingFetchGuestList(false);
@@ -63,8 +74,10 @@ export const useEventRegistration = () => {
       );
       toast.success(res.data.message);
       return res.data;
-    } catch (err: any) {
-      toast.error(err?.response?.data?.message || "fetch guest list failed");
+    } catch (err: unknown) {
+      const error = err as AxiosError<{ message?: string }>;
+
+      toast.error(error?.response?.data?.message || "fetch guest list failed");
       return false;
     } finally {
       setLoadingFetchGuestListBYID(false);
@@ -86,8 +99,10 @@ export const useEventRegistration = () => {
       );
       toast.success(res.data.message);
       return res.data;
-    } catch (err: any) {
-      toast.error(err?.response?.data?.message || "fetch guest list failed");
+    } catch (err: unknown) {
+      const error = err as AxiosError<{ message?: string }>;
+
+      toast.error(error?.response?.data?.message || "fetch guest list failed");
       return false;
     } finally {
       setLoadingUpdateStatus(false);
@@ -97,20 +112,20 @@ export const useEventRegistration = () => {
   const deleteGuest = async (guestId: string) => {
     setLoadingDeleteGuest(true);
     try {
-      const res = await axios.delete(
-        `${ENDPOINT.EVENTREGISTRATION}`,{
-            data:{ id: guestId },
-        
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${getToken()}`,
-          }
-        }
-      );
+      const res = await axios.delete(`${ENDPOINT.EVENTREGISTRATION}`, {
+        data: { id: guestId },
+
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${getToken()}`,
+        },
+      });
       toast.success(res.data.message);
       return res;
-    } catch (err: any) {
-      toast.error(err?.response?.data?.message || "fetch guest list failed");
+    } catch (err: unknown) {
+      const error = err as AxiosError<{ message?: string }>;
+
+      toast.error(error?.response?.data?.message || "fetch guest list failed");
       return false;
     } finally {
       setLoadingDeleteGuest(false);

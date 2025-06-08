@@ -1,6 +1,6 @@
 "use client";
 import { useAdminLogin } from "@/hooks/admin";
-import React, { useState } from "react";
+import React from "react";
 import { BeatLoader } from "react-spinners";
 import { useFormik } from "formik";
 import { initialAdminLogin, adminLoginSchema } from "@/frontValidation";

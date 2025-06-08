@@ -2,17 +2,15 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Html5QrcodeScanner } from "html5-qrcode";
-import { toast } from "react-hot-toast";
-import {usescan} from "@/hooks/scanqr"
+import {useScan} from "@/hooks/scanqr"
 import CheckinCard from "@/compoments/checkincard/checkincard";
 
 
 export default function ScanQr() {
   const scannerRef = useRef<HTMLDivElement>(null);
-  const {scanQr,loading} = usescan();
+  const {scanQr,loading} = useScan();
 
   const [selectedGuestId, setSelectedGuestId] = useState<string | null>(null);
-  console.log("🚀 ~ ScanQr ~ selectedGuestId:", selectedGuestId)
   const [guestData, setGuestData] = useState(null);
 
   useEffect(() => {
@@ -45,7 +43,7 @@ export default function ScanQr() {
     return () => {
       scanner.clear().catch(console.error);
     };
-  }, []);
+  }, [scanQr]);
 
   return (
     <div className="flex flex-col items-center justify-center gap-4 min-h-[calc(100vh-120px)] p-4 md:p-8">
@@ -54,7 +52,7 @@ export default function ScanQr() {
 
 {selectedGuestId && guestData && (
         <CheckinCard
-          guestId={selectedGuestId}
+          // guestId={selectedGuestId}
           onClose={() => setSelectedGuestId(null)}
           guest={guestData}
           loading={loading}

@@ -3,7 +3,7 @@ import { apporveguest, checkGuest, createGuest, deleteGuests, findAllGuest } fro
 import { guestSchema, guestStatusValidationSchema } from "@/backend/validations/guest/guest";
 import { NextRequest, NextResponse } from "next/server";
 
-export const Guest = async (req: NextRequest, res: NextResponse, next: any) => {
+export const Guest = async (req: NextRequest) => {
     await connectToDatabase();
     try {
         const body = await req.json();
@@ -24,7 +24,7 @@ export const Guest = async (req: NextRequest, res: NextResponse, next: any) => {
 
 
 
-export const fetchallGuest = async (req: NextRequest, res: NextResponse, next: any) => {
+export const fetchallGuest = async () => {
     await connectToDatabase();
     try { 
         const result = await findAllGuest( );
@@ -38,7 +38,7 @@ export const fetchallGuest = async (req: NextRequest, res: NextResponse, next: a
     }
 };
 
-export const apporveGuest = async (req: NextRequest, res: NextResponse, next: any) => {
+export const apporveGuest = async (req: NextRequest) => {
     await connectToDatabase();
     try {
         const body = await req.json();
@@ -63,11 +63,11 @@ export const apporveGuest = async (req: NextRequest, res: NextResponse, next: an
 };
 
 
-export const deleteGuest = async (req: NextRequest, res: NextResponse, next: any) => {
+export const deleteGuest = async (req: NextRequest) => {
     await connectToDatabase();
     try {
         const { id } = await req.json();
-        const result = await deleteGuests(id);
+         await deleteGuests(id);
         return NextResponse.json({ status: 201, message: "Guest deleted successfully" });
     } catch (error: unknown) {
         if (error instanceof Error) {
@@ -78,7 +78,7 @@ export const deleteGuest = async (req: NextRequest, res: NextResponse, next: any
     }
 }
 
-export const findGuest = async (req: NextRequest, res: NextResponse, next: any) => {
+export const findGuest = async (req: NextRequest) => {
     await connectToDatabase();
     try {
         const { id } = await req.json();

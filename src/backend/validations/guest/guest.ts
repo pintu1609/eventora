@@ -1,5 +1,4 @@
 import z from "zod";
-import { id } from "zod/v4/locales";
 
 export const guestSchema = z.object({
   name: z.string().min(3, "Name must be at least 3 characters").max(30, "Name must be at most 30 characters"),

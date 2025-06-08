@@ -1,33 +1,21 @@
 "use client";
-import React, { use, useEffect, useState } from "react";
-import { useEventRegistration } from "@/hooks/registration";
+import React from "react";
 import { ClipLoader } from "react-spinners";
-import Image from "next/image";
-import toast from "react-hot-toast";
-import { usescan } from "@/hooks/scanqr";
+import { useScan } from "@/hooks/scanqr";
 
 interface Guest {
   _id: string;
   name: string;
   email: string;
   phone: string;
-  // image?: {
-  //   _id: string;
-  //   name: string;
-  //   data: {
-  //     type: string;
-  //     data: number[];
-  //   };
-  // };
   status: string;
   hasEntered: boolean;
-  // imageUrl?: string;
 
 }
 
-export default function CheckinCard({ guestId, onClose,loading, guest  }: { guestId: string; onClose: () => void; loading: boolean; guest:Guest }) {
+export default function CheckinCard({  onClose,loading, guest  }: {  onClose: () => void; loading: boolean; guest:Guest }) {
 
-  const { checkinGuest, loadingCheckinGuest } = usescan();
+  const { checkinGuest, loadingCheckinGuest } = useScan();
 
   const handleAction=async(guestId:string)=>{
   const res =  await checkinGuest (guestId,);

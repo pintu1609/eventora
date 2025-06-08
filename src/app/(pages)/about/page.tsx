@@ -12,11 +12,11 @@ export default function About() {
           Welcome to <span className="font-semibold text-blue-600">Eventora</span> – Where Every Moment Matters.
         </p>
         <p className="text-gray-700 text-base md:text-lg mb-8">
-          We’re not just another event management platform. Eventora is your backstage pass to flawlessly planned, beautifully executed, and truly unforgettable events.
+         We&rsquo;re not just another event management platform. Eventora is your backstage pass to flawlessly planned, beautifully executed, and truly unforgettable events.
         </p>
         <p className="text-gray-700 text-base md:text-lg mb-12">
-          Whether you're throwing a cozy birthday bash or launching a global tech conference, our mission is simple:
-          <span className="block font-semibold italic mt-2">"You dream it, we manage it."</span>
+          Whether you&rsquo;re throwing a cozy birthday bash or launching a global tech conference, our mission is simple:
+          <span className="block font-semibold italic mt-2">&ldquo;You dream it, we manage it.&rdquo;</span>
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 text-left">
@@ -45,7 +45,7 @@ export default function About() {
         <div className="mt-16">
           <h3 className="text-2xl font-bold text-gray-800 mb-4">🥂 Let’s Raise a Toast</h3>
           <p className="text-gray-600">
-            Whether you're a pro planner or party starter, Eventora helps you
+            Whether you&rsquo;re a pro planner or party starter, Eventora helps you
             <span className="font-semibold text-blue-600"> make memories, not spreadsheets.</span>
           </p>
         </div>

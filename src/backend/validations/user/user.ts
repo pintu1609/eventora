@@ -4,7 +4,7 @@ export const userSchema = z.object({
     name: z.string().min(3).max(30).nonempty("name is required"),
     userName: z.string().min(3).max(30).nonempty("userName is required"),
     password: z.string().min(8).max(30).nonempty("password is required"),
-    userType: z.enum(["admin", "user", "seller", "operator"]),
+    userType: z.enum(["admin", "user"]),
 });
 
 

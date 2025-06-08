@@ -3,7 +3,7 @@ import { checkGuest } from "@/backend/service/scanqr/scanqr";
 import { checkinginGuest } from "@/backend/service/scanqr/scanqr";
 import { NextRequest, NextResponse } from "next/server";
 
-export const scanQr = async (req: NextRequest, res: NextResponse, next: any) => {
+export const scanQr = async (req: NextRequest) => {
 
     try{
         await connectToDatabase();
@@ -23,7 +23,7 @@ export const scanQr = async (req: NextRequest, res: NextResponse, next: any) => 
 
 
 
-export const checkinGuest = async (req: NextRequest, res: NextResponse, next: any) => {
+export const checkinGuest = async (req: NextRequest) => {
     await connectToDatabase();
     try {
         const body = await req.json();

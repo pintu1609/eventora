@@ -8,10 +8,7 @@ export interface Guest extends Document {
   status: string;
   qrToken: string;
   hasEntered: boolean;
-  image?: {
-    data: Buffer;
-    contentType: string;
-  };
+  image: string
 
 }
 

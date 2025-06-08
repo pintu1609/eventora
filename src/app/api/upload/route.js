@@ -1,18 +1,15 @@
 // import { connectionString } from "@/lib/database/db_connection"
 import { connectToDatabase } from "@/backend/lib/db";
 import { Image } from "@/backend/model/image/image";
-import mongoose from "mongoose"
 import { NextResponse } from "next/server";
 
 export const POST = async (request) => {
-    console.log("🚀 ~ POST ~ request:", request)
     try {
         // await mongoose.connect(connectionString);
               await connectToDatabase();
         
 
         const data = await request.formData();
-        console.log("🚀 ~ POST ~ data:", data)
         const file = data.get('file');
 
         if (!file) {
@@ -48,6 +45,7 @@ export const GET = async () => {
         return NextResponse.json({success:true, images})
     }
     catch(error){
+        console.log(error)
         NextResponse.json({success:false, error: "Failed"})
     }
 }

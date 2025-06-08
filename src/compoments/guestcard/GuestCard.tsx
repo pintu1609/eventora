@@ -1,9 +1,8 @@
 "use client";
-import React, { use, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useEventRegistration } from "@/hooks/registration";
 import { ClipLoader } from "react-spinners";
 import Image from "next/image";
-import toast from "react-hot-toast";
 
 interface Guest {
   _id: string;
@@ -28,13 +27,13 @@ export default function GuestCard({ guestId, onClose, onStatusChange, }: { guest
   const { fetchGuestBYID, loadingFetchGuestListByID, updateGuestStatus, loadingUpdateStatus } = useEventRegistration();
   const [guest, setGuest] = useState<Guest | null>(null);
 
-  const handleAction=async(status:string)=>{
-  const res =  await updateGuestStatus(guestId,status);
-  if (res.status === 201)
-     onStatusChange(status); // ✅ update parent list before closing
+  const handleAction = async (status: string) => {
+    const res = await updateGuestStatus(guestId, status);
+    if (res.status === 201)
+      onStatusChange(status); // ✅ update parent list before closing
 
     onClose();
-  } 
+  }
 
 
   useEffect(() => {
@@ -77,6 +76,9 @@ export default function GuestCard({ guestId, onClose, onStatusChange, }: { guest
     };
 
     loadGuests();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+
   }, [guestId]);
 
   return (
@@ -89,7 +91,7 @@ export default function GuestCard({ guestId, onClose, onStatusChange, }: { guest
         ) : (
           <div>
             <h3 className="text-xl font-bold mb-4 text-center">Guest Details</h3>
-            
+
             <p><strong>Name:</strong> {guest?.name}</p>
             <p><strong>Email:</strong> {guest?.email}</p>
             <p><strong>Phone:</strong> {guest?.phone}</p>
@@ -109,27 +111,27 @@ export default function GuestCard({ guestId, onClose, onStatusChange, }: { guest
             </div>
 
             <div className="flex justify-between mt-6">
-                            {guest?.status !== "approved" && (
+              {guest?.status !== "approved" && (
 
-              <button
-                onClick={() => handleAction("approved")}
-                disabled={loadingUpdateStatus}
-                className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
-              >
-                Approve
-              </button>
-               )}
+                <button
+                  onClick={() => handleAction("approved")}
+                  disabled={loadingUpdateStatus}
+                  className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
+                >
+                  Approve
+                </button>
+              )}
               {guest?.status !== "cancel" && (
-                
-             
-              <button
-                onClick={() => handleAction("cancel")}
-                disabled={loadingUpdateStatus}
-                className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
-              >
-                Cancel
-              </button>
-               )}
+
+
+                <button
+                  onClick={() => handleAction("cancel")}
+                  disabled={loadingUpdateStatus}
+                  className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
+                >
+                  Cancel
+                </button>
+              )}
               <button
                 onClick={onClose}
                 className="bg-gray-300 px-4 py-2 rounded hover:bg-gray-400"

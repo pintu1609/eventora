@@ -5,8 +5,8 @@ import { NextRequest, NextResponse } from "next/server";
 
 
 
-export async function POST(req: NextRequest, res: NextResponse, next: any) {
+export async function POST(req: NextRequest ) {
   const auth = await verifyToken(req,["admin"]);
   if (auth instanceof NextResponse) return auth;
-    return await findGuest (req, res, next);
+    return await findGuest (req);
 }

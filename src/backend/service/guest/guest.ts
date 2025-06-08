@@ -4,7 +4,17 @@ import { Guest } from "@/backend/model/guest/guest";
 import QRCode from "qrcode";
 
 import {Image} from "@/backend/model/image/image"
-export const createGuest = async (guest: any) => {
+
+interface interfaceGuest {
+  name: string;
+  email: string;
+  phone: string;
+  status: string;
+  qrToken: string;
+  hasEntered: boolean;
+  image: string;
+}
+export const createGuest = async (guest: interfaceGuest) => {
         const existingGuest = await findOneAndUpdate(Guest, { email: guest.email }, guest);
         if (existingGuest) {
            throw new Error("Guest already exist");
@@ -19,7 +29,7 @@ export const findAllGuest = async () => {
     return guest;
 };
 
-export const apporveguest = async (id: any, status: any) => {
+export const apporveguest = async (id: string, status: string) => {
 console.log("🚀 ~ apporveguest ~ status:", status)
 console.log("🚀 ~ apporveguest ~ id:", id)
 
@@ -47,7 +57,7 @@ console.log("🚀 ~ apporveguest ~ id:", id)
     <p>Best regards,</p>
     <p>Event Management Team</p>
   `;
-  const email= sendEmail({
+  await sendEmail({
     to: guest.email,
     subject: "Guest QR code",
     desc: htmlBody,
@@ -69,14 +79,15 @@ console.log("🚀 ~ apporveguest ~ id:", id)
 
 };
 
-export const deleteGuests = async (id: any) => {
+export const deleteGuests = async (id: string) => {
     const guest = await findOneAndDelete(Guest, { _id: id });
     return guest;
 };
 
-export const checkGuest = async (id: any) => {
+export const checkGuest = async (id: string) => {
     const guest = await findByID(Guest, id); 
     if (!guest) {return {}};
+
     const image = await findByID(Image, guest.image);
     const guestWithImage = {
     ...guest.toObject?.() || guest, // ensures it's a plain object

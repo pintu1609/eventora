@@ -1,7 +1,7 @@
 import { findOne, findOneAndUpdate } from "@/backend/dal/dal";
 import { Guest } from "@/backend/model/guest/guest";
 
-export const checkGuest = async (qrcode: any) => {
+export const checkGuest = async (qrcode: string) => {
     console.log("🚀 ~ checkGuest ~ qrcode:", qrcode)
     const guest = await findOne(Guest, { qrToken: qrcode });
     console.log("🚀 ~ checkGuest ~ guest:", guest)
@@ -18,8 +18,8 @@ export const checkGuest = async (qrcode: any) => {
 
 
 
-export const checkinginGuest = async (id: any) => {
+export const checkinginGuest = async (id: string) => {
     const guest = await findOneAndUpdate(Guest, { _id: id }, { hasEntered: true });
-    if (!guest) {"Guest not found"};
+    if (!guest) { return "Guest not found"};
     return guest;
 };

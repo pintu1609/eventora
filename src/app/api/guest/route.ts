@@ -3,23 +3,23 @@ import { verifyToken } from "@/backend/lib/middleware/authorization";
 import { NextRequest, NextResponse } from "next/server";
 
 
-export async function POST(req: NextRequest, res: NextResponse, next: any) {
-  return await Guest(req, res, next);
+export async function POST(req: NextRequest) {
+  return await Guest(req);
 }
 
-export async function GET(req: NextRequest, res: NextResponse, next: any) {
+export async function GET(req: NextRequest) {
   const auth = await verifyToken(req,["admin"]);
   if (auth instanceof NextResponse) return auth;
-  return await fetchallGuest (req, res, next);
+  return await fetchallGuest ();
 }
 
-export async function PUT(req: NextRequest, res: NextResponse, next: any) {
+export async function PUT(req: NextRequest) {
   const auth = await verifyToken(req,["admin"]);
   if (auth instanceof NextResponse) return auth;
-  return await apporveGuest(req, res, next);
+  return await apporveGuest(req);
 }
-export async function DELETE(req: NextRequest, res: NextResponse, next: any) {
+export async function DELETE(req: NextRequest) {
   const auth = await verifyToken(req,["admin"]);
   if (auth instanceof NextResponse) return auth;
-  return await deleteGuest(req, res, next);
+  return await deleteGuest(req);
 }

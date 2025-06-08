@@ -1,13 +1,13 @@
 "use client";
 import { useState } from "react";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { toast } from "react-hot-toast";
 import  ENDPOINT  from "../endPoint"
 
 export const useUploadImage = () => {
   const [imageLoading, setImageLoading] = useState(false);
 
-  const uploadImage = async (file: any) => {
+  const uploadImage = async (file: File) => {
     setImageLoading(true);
     try {
       const formData = new FormData();
@@ -18,8 +18,10 @@ export const useUploadImage = () => {
       });
       toast.success(res.data.message);
       return res.data.data;
-    } catch (err: any) {
-      toast.error(err?.response?.data?.message || "Login failed");
+    } catch (err: unknown) {
+            const error = err as AxiosError<{ message?: string }>;
+      
+      toast.error(error?.response?.data?.message || "Login failed");
       return false;
     } finally {
       setImageLoading(false);
