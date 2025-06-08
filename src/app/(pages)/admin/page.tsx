@@ -6,12 +6,12 @@ import { useFormik } from "formik";
 import { initialAdminLogin, adminLoginSchema } from "@/frontValidation";
 import toast from "react-hot-toast";
 import { toFormikValidationSchema } from 'zod-formik-adapter';
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 
 
 
 export default function Admin() {
-  const router = useRouter();
+  // const router = useRouter();
 
   const { login, loading } = useAdminLogin();
   const { values, errors, touched, handleBlur, handleChange, handleSubmit, resetForm } = useFormik({
@@ -22,11 +22,9 @@ export default function Admin() {
         const success = await login(values.userName, values.password);
         if (success) {
           resetForm();
-          router.push("/registrationList");
+          // router.push("/registrationList");
+          window.location.href = "/registrationList"
           toast.success(success.message || "Login successful");
-
-
-
         } else {
           toast.error("Invalid credentials");
         }

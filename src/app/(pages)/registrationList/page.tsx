@@ -94,7 +94,7 @@ export default function RegistrationList() {
                     </TableCell>
                     <TableCell className="text-center">
                       <button
-                        className="text-blue-600 hover:underline"
+                        className="text-blue-600 hover:underline cursor-pointer"
                         onClick={() => setSelectedGuestId(user._id)}
                       >
                         View
