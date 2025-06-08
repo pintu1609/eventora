@@ -31,11 +31,10 @@
 // app/confirmation/page.tsx
 import ConfirmationClient from "@/compoments/ConfirmationClient/ConfirmationClient";
 
-interface PageProps {
-  searchParams: Record<string, string | undefined>;  // safer typing here
-}
-
-export default function ConfirmationPage({ searchParams }: PageProps) {
+export default function ConfirmationPage({   searchParams,
+}: {
+  searchParams: { id?: string };
+}) {
   const id = searchParams.id ?? null;
   return <ConfirmationClient id={id} />;
 }
