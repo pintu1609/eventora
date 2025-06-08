@@ -41,8 +41,8 @@ export default function ScanQr() {
 
   return (
     <div className="flex flex-col items-center justify-center gap-4 min-h-[calc(100vh-120px)] p-4 md:p-8 bg-gradient-to-br from-blue-50 to-purple-100">
-      <h2 className="text-xl font-bold text-center">Scan Guest QR Code</h2>
-      <div id="qr-reader" ref={scannerRef} className="w-full max-w-sm" />
+      <h2 className="text-xl font-bold text-center text-gray-800">Scan Guest QR Code</h2>
+      <div id="qr-reader" ref={scannerRef} className="w-full max-w-sm text-gray-800" />
 
       {selectedGuestId && guestData && (
         <CheckinCard

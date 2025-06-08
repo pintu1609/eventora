@@ -68,28 +68,28 @@ export default function RegistrationList() {
           <div className="hidden md:block bg-white rounded-lg shadow-md p-4 overflow-x-auto">
             <Table aria-label="Guest registration table" isStriped>
               <TableHeader>
-                <TableColumn className="text-center">NAME</TableColumn>
-                <TableColumn className="text-center">Email</TableColumn>
-                <TableColumn className="text-center">Phone</TableColumn>
-                <TableColumn className="text-center">Status</TableColumn>
-                <TableColumn className="text-center">HasEntered</TableColumn>
-                <TableColumn className="text-center">View</TableColumn>
-                <TableColumn className="text-center">Action</TableColumn>
+                <TableColumn className="text-center text-gray-800">NAME</TableColumn>
+                <TableColumn className="text-center text-gray-800">Email</TableColumn>
+                <TableColumn className="text-center text-gray-800">Phone</TableColumn>
+                <TableColumn className="text-center text-gray-800">Status</TableColumn>
+                <TableColumn className="text-center text-gray-800">HasEntered</TableColumn>
+                <TableColumn className="text-center text-gray-800">View</TableColumn>
+                <TableColumn className="text-center text-gray-800">Action</TableColumn>
               </TableHeader>
               <TableBody>
                 {guestList.map((user) => (
                   <TableRow key={user._id}>
-                    <TableCell className="text-center">{user.name}</TableCell>
-                    <TableCell className="text-center">{user.email}</TableCell>
-                    <TableCell className="text-center">{user.phone}</TableCell>
-                    <TableCell className="text-center">
+                    <TableCell className="text-center text-gray-800">{user.name}</TableCell>
+                    <TableCell className="text-center text-gray-800">{user.email}</TableCell>
+                    <TableCell className="text-center text-gray-800">{user.phone}</TableCell>
+                    <TableCell className="text-center text-gray-800">
                       {user.status === "pending"
                         ? "Pending"
                         : user.status === "approved"
                           ? "Approved"
                           : "Cancelled"}
                     </TableCell>
-                    <TableCell className="text-center">
+                    <TableCell className="text-center text-gray-800">
                       {user.hasEntered ? "Yes" : "No"}
                     </TableCell>
                     <TableCell className="text-center">
