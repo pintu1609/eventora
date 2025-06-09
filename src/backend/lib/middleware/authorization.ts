@@ -32,6 +32,6 @@ export const verifyToken = async (
     return decoded; // You can use this decoded info (e.g., userId or role)
   } catch (err) {
     console.error("Error verifying token:", err);
-    return NextResponse.json({ error: "Invalid Token" }, { status: 401 });
+    return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
   }
 };

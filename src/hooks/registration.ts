@@ -67,6 +67,11 @@ export const useEventRegistration = () => {
       return res.data;
     } catch (err: unknown) {
       const error = err as AxiosError<{ message?: string }>;
+      if (error?.status === 401) {
+        document.cookie = "token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+        window.location.href = "/";
+        
+      }
 
       toast.error(error?.response?.data?.message || "fetch guest list failed");
       return false;
@@ -92,7 +97,11 @@ export const useEventRegistration = () => {
       return res.data;
     } catch (err: unknown) {
       const error = err as AxiosError<{ message?: string }>;
-
+      if (error?.status === 401) {
+        document.cookie = "token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+        window.location.href = "/";
+        
+      }
       toast.error(error?.response?.data?.message || "fetch guest list failed");
       return false;
     } finally {
@@ -117,7 +126,11 @@ export const useEventRegistration = () => {
       return res.data;
     } catch (err: unknown) {
       const error = err as AxiosError<{ message?: string }>;
-
+      if (error?.status === 401) {
+        document.cookie = "token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+        window.location.href = "/";
+        
+      }
       toast.error(error?.response?.data?.message || "fetch guest list failed");
       return false;
     } finally {
@@ -140,7 +153,11 @@ export const useEventRegistration = () => {
       return res;
     } catch (err: unknown) {
       const error = err as AxiosError<{ message?: string }>;
-
+      if (error?.status === 401) {
+        document.cookie = "token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+        window.location.href = "/";
+        
+      }
       toast.error(error?.response?.data?.message || "fetch guest list failed");
       return false;
     } finally {
