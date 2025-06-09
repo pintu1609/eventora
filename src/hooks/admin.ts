@@ -15,7 +15,10 @@ export const useAdminLogin = () => {
         password,
       });
       // toast.success(res.data.message);
-      localStorage.setItem("token", res.data.data.token);
+      document.cookie = `token=${res.data.data.token}; path=/; max-age=${60 * 60 * 24 * 30}; SameSite=Lax;`;
+
+      window.location.href = "/registrationList"
+      
       return res.data;
     } catch (err: unknown) {
       const error = err as AxiosError<{ message?: string }>;

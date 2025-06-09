@@ -12,9 +12,26 @@ interface RegesterGuest {
 }
 
 export const useEventRegistration = () => {
+  // const getToken = () => {
+  //   return typeof window !== "undefined" ? localStorage.getItem("token") : null;
+  // };
+
   const getToken = () => {
-    return typeof window !== "undefined" ? localStorage.getItem("token") : null;
-  };
+  if (typeof document === "undefined") return null;
+
+  const name = "token=";
+  const decodedCookie = decodeURIComponent(document.cookie);
+  const cookies = decodedCookie.split(";");
+
+  for (let i = 0; i < cookies.length; i++) {
+    const c = cookies[i].trim();
+    if (c.startsWith(name)) {
+      return c.substring(name.length);
+    }
+  }
+
+  return null;
+};
   const [loading, setLoading] = useState(false);
   const [loadingFetchGuestList, setLoadingFetchGuestList] = useState(false);
   const [loadingFetchGuestListByID, setLoadingFetchGuestListBYID] =

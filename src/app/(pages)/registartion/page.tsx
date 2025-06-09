@@ -172,7 +172,7 @@ export default function GuestRegistrationPage() {
 
 
 
-            <button type="submit" className="bg-purple-600 text-white py-2 px-4 rounded-md hover:bg-purple-700 transition-colors disabled:opacity-50 mx-auto" disabled={loading || imageLoading}>
+            <button type="submit" className="bg-purple-600 text-white py-2 px-4 rounded-md hover:bg-purple-700 transition-colors disabled:opacity-50 mx-auto cursor-pointer" disabled={loading || imageLoading}>
               {loading ? <BeatLoader color="white" size={8} /> : "Register"}
             </button>
           </form>

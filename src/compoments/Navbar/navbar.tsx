@@ -42,7 +42,10 @@ export default function Navbar() {
         )}
         {isAuthenticated && (
           <div className="hidden md:flex items-center">
-            <button className="cursor-pointer bg-purple-600 hover:bg-purple-7git 00 text-white font-semibold py-1 px-4 rounded " onClick={() => { localStorage.removeItem("token"); window.location.href = "/"; }}>Logout</button>
+            <button className="cursor-pointer bg-purple-600 hover:bg-purple-7git 00 text-white font-semibold py-1 px-4 rounded " onClick={() => {
+              document.cookie = "token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+              window.location.href = "/";
+            }}>Logout</button>
           </div>
         )}
 
@@ -67,7 +70,10 @@ export default function Navbar() {
             <li><Link href="/admin" onClick={() => setIsOpen(false)}>Admin Login</Link></li>
           )}
           {isAuthenticated && (
-            <li><button onClick={() => { localStorage.removeItem("token"); window.location.href = "/"; }}>Logout</button></li>
+            <li><button onClick={() => {
+              document.cookie = "token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+              ; window.location.href = "/";
+            }}>Logout</button></li>
           )}
         </ul>
       )}

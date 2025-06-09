@@ -23,7 +23,6 @@ export default function Admin() {
         if (success) {
           resetForm();
           // router.push("/registrationList");
-          window.location.href = "/registrationList"
           toast.success(success.message || "Login successful");
         } else {
           toast.error("Invalid credentials");
@@ -68,7 +67,7 @@ export default function Admin() {
 
           <button
             type="submit"
-            className="bg-purple-600 text-white py-2 px-4 rounded-md hover:bg-purple-700 transition duration-300 disabled:opacity-50 mx-auto"
+            className="bg-purple-600 text-white py-2 px-4 rounded-md hover:bg-purple-700 transition duration-300 disabled:opacity-50 mx-auto cursor-pointer"
             disabled={loading}
           >
             {loading ? <BeatLoader size={8} color="white" /> : "Login"}
